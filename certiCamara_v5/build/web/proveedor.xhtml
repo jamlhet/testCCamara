@@ -1,0 +1,93 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:ui="http://java.sun.com/jsf/facelets">
+    <h:head>
+        <title>Proveedores</title>
+    </h:head>
+    <h:body>
+        Adminsitrador De Proveedores
+        <br />
+        <!-- <h:link outcome="welcomePrimefaces" value="Primefaces welcome page" /> -->
+        <h:form prependId="false">
+            <p:tabMenu activeIndex="0">
+                <p:menuitem value="Bodegas" url="faces/bodega.xhtml"/>  
+                <p:menuitem value="Proveedores" url="faces/proveedor.xhtml" />  
+                <p:menuitem value="Productos" url="faces/producto.xhtml"/>  
+            </p:tabMenu>  
+            <h:head>
+                <h:panelGrid columns="3" cellpadding="10">
+                    <h:outputText value="Nombre: *" />    
+                    <p:inputText id="nameCreateIT"
+                                 value="#{proveedorManagedBean.createProveedorPojo.name}"
+                                 required="true"/>
+                    <p:message id="numberOnlyMessage"
+                               for="nameCreateIT"
+                               display="Nombre"/> 
+
+                    <h:outputText value="Dirección: *" />    
+                    <p:inputText id="addressCreateIT"
+                                 value="#{proveedorManagedBean.createProveedorPojo.address}"
+                                 required="true"/>
+                    <p:message id="textOnlyMessage"
+                               for="addressCreateIT"
+                               display="Dirección" />
+
+                    <h:outputText value="Teléfono: *" />    
+                    <p:inputText id="phoneCreateIT"
+                                 value="#{proveedorManagedBean.createProveedorPojo.phone}"
+                                 required="true"/>
+                    <p:message id="textOnlyMessage2"
+                               for="phoneCreateIT"
+                               display="Teléfono" />
+
+                    <h:outputText value="Correo: *" />    
+                    <p:inputText id="mailCreateIT"
+                                 value="#{proveedorManagedBean.createProveedorPojo.mail}"
+                                 required="true"/>
+                    <p:message id="textOnlyMessage3"
+                               for="mailCreateIT"
+                               display="Correo" />
+
+                </h:panelGrid>
+
+                <h:panelGrid columns="4" cellpadding="10">      
+                    <p:commandButton value="#{proveedorManagedBean.createLabelBoton}" 
+                                     action="#{proveedorManagedBean.create}"                                     
+                                     update="dataTable"/>
+                    <p:commandButton value="#{proveedorManagedBean.updateLabelBoton}"
+                                     action="#{proveedorManagedBean.update}"
+                                     update="dataTable"/>
+                    <p:commandButton value="#{proveedorManagedBean.deleteLabelBoton}"
+                                     action="#{proveedorManagedBean.delete}"
+                                     update="dataTable"/>                    
+                </h:panelGrid>
+            </h:head>
+
+            <p:dataTable id="dataTable" var="proveedor"
+                         value="#{proveedorManagedBean.proveedores}" 
+                         emptyMessage="No hay Proveedores">  
+
+                <p:column id="name" headerText="Nombre">  
+                    <h:outputText value="#{proveedor.name}" />  
+                </p:column>  
+
+                <p:column id="address" headerText="Dirección">  
+                    <h:outputText value="#{proveedor.address}" />  
+                </p:column>  
+
+                <p:column id="phone" headerText="Teléfono">  
+                    <h:outputText value="#{proveedor.phone}" />  
+                </p:column>  
+
+                <p:column id="mail" headerText="Correo">  
+                    <h:outputText value="#{proveedor.mail}" />  
+                </p:column>
+
+            </p:dataTable>  
+        </h:form> 
+    </h:body>
+</html>
